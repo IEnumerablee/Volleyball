@@ -1,0 +1,13 @@
+name: Volleyball
+version: '${project.version}'
+main: ru.ienumerable.volleyball.Volleyball
+api-version: '1.19'
+authors: [ IEnumerable ]
+commands:
+  ballskin:
+    description: sets ball skin
+    usage: /ballskin
+  ballsreload:
+    description: reload balls config
+    usage: /ballsreload
+    permission: volleyball.reload

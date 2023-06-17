@@ -1,0 +1,37 @@
+# Вся скорость измеряется в BPS - блоках в секунду
+
+IPT: 20 # Количество итераций обратоки физики за тик. Не советуется менять
+
+GRAVITY: -0.05 # гравитация
+
+DEFAULT_BOUNCE_ENERGY_LOSS: 2 # Стандартная потеря энергии при отскоке. Energy / DEFAULT_BOUNCE_ENERGY_LOSS
+
+MAX_SPEED: 40 # Максимальная скорость мяча
+MAX_ROT_SPEED: 100 # Максимальная скорость врящения мяча
+ROT_BREAKING_SPEED: 1000 # Максимальная скорость торможения вращения мяча
+ROT_SPEED_PROPORTION: 1000 # Пропорция ускорения вращения от скорости. При отскоке мяча
+
+THROW_CHECKING_SPEED: 0.06 # Скорость ползунка силы броска
+MAX_THROW_POWER: 19 # Максимальная сила броска (В BPS)
+MIN_THROW_POWER: 8 # Минимальная сила броска (В BPS)
+
+DESPAWN_TIME: 10000 # Время(в тиках), по истечения которого лежащий неподвижно мяч будет дропнут
+DEFAULT_SKULLSKIN: ball # Стандартный скин мяча
+
+# Натсройки для блоков
+
+TRANSPARENT_BLOCKS: # Блоки, через которые может проходить мяч
+  - AIR
+  - VOID_AIR
+  - CAVE_AIR
+  - GRASS
+
+BLOCKS_ENERGY_LOSSES: # Индивидуальные потери энергии для блоков
+  WATER: 5
+  SLIME_BLOCK: 1
+  MOSS_BLOCK: 3
+  HAY_BLOCK: 5
+  HONEY_BLOCK: 100
+  ICE: 1.2
+  PACKED_ICE: 1.1
+  BLUE_ICE: 0.9
