@@ -22,14 +22,18 @@ public class SkinsRegistry {
         YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(new File(Volleyball.getInstance().getDataFolder(), "skins.yml"));
         Set<String> idSet = yamlConfiguration.getKeys(false);
         for(String id: idSet) {
-            MemorySection skinSection = (MemorySection) yamlConfiguration.get(id);
+            try {
+                MemorySection skinSection = (MemorySection) yamlConfiguration.get(id);
 
-            String name = skinSection.getString("name");
-            String url = skinSection.getString("url");
-            String perm = skinSection.getString("perm");
-            String bm = skinSection.getString("lock_msg");
+                String name = skinSection.getString("name");
+                String url = skinSection.getString("url");
+                String perm = skinSection.getString("perm");
+                String bm = skinSection.getString("lock_msg");
 
-            nameUrlPair.put(id, new SkullSkin(id, url, name, bm, perm));
+                nameUrlPair.put(id, new SkullSkin(id, url, name, bm, perm));
+            }catch (Exception exception){
+                Bukkit.getLogger().warning("Ошибка при загрузке скина %s. Проверите правильность конфигурации".formatted(id));
+            }
         }
 
     }
