@@ -1,25 +1,10 @@
 package ru.ienumerable.volleyball.tools.math;
 
 import org.bukkit.Location;
-import ru.ienumerable.volleyball.Config;
 
 public class Angle {
 
     public double yaw, pitch;
-
-    public Angle(double yaw, double pitch, boolean convert) {
-        if(convert){
-            yaw = convertAngle(yaw);
-            pitch = convertAngle(pitch);
-        }else {
-            this.yaw = yaw;
-            this.pitch = yaw;
-        }
-    }
-
-    public Angle(Vector vec){
-        vectorToAngle(vec);
-    }
 
     public Angle(Location loc){
         yaw = convertAngle(loc.getYaw());
@@ -29,11 +14,6 @@ public class Angle {
     public Angle(){
         yaw = 0;
         pitch = 0;
-    }
-
-    public void add(Angle ang){
-        pitch += ang.pitch;
-        yaw += ang.yaw;
     }
 
     public void normalize(double val){
