@@ -15,6 +15,7 @@ import org.ipvp.canvas.type.ChestMenu;
 import ru.ienumerable.volleyball.Volleyball;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SkinChanger {
@@ -37,8 +38,8 @@ public class SkinChanger {
 
     private void createMenu(){
 
-        ItemStack arrowForward = getNamedItem(Material.ARROW, ChatColor.GOLD + ">>");
-        ItemStack arrowBackward = getNamedItem(Material.ARROW, ChatColor.GOLD + "<<");
+        ItemStack arrowForward = createNamedItem(Material.ARROW, ChatColor.GOLD + ">>");
+        ItemStack arrowBackward = createNamedItem(Material.ARROW, ChatColor.GOLD + "<<");
 
         Menu.Builder<ChestMenu.Builder> menuTemplate = ChestMenu.builder(3).
                 title(">> Выбор скина <<");
@@ -61,8 +62,6 @@ public class SkinChanger {
 
         SkinsRegistry container = Volleyball.getSkullsContainer();
 
-        int slot = 1;
-
         for(String id : container.getAllSkinsId()){
             SkullSkin skin = container.getSkull(id);
             ItemStack item = skin.getItem();
@@ -71,13 +70,12 @@ public class SkinChanger {
 
             if(skin.equals(this.skin)){
                 stripColors(item);
-                addPrefix(item, ChatColor.WHITE + "> ");
-                addSuffix(item, " <");
+                addBrackets(item, ChatColor.WHITE + "> ", " <");
                 addDescription(item, ChatColor.GRAY + "Скин уже выбран");
                 slotBuilder.item(item);
             }else if(!skin.hasPermission(player)){
                 stripColors(item);
-                addPrefix(item, ChatColor.RED + "☒ ");
+                addBrackets(item, ChatColor.RED + "☒ ", "");
                 addDescription(item, ChatColor.GRAY + skin.getBlockMsg());
                 slotBuilder.item(item);
             }else{
@@ -86,7 +84,6 @@ public class SkinChanger {
                 slotBuilder.item(item);
             }
             menuBuilder.addItem(slotBuilder.build());
-            slot++;
         }
 
         menuPages = menuBuilder.build();
@@ -100,20 +97,14 @@ public class SkinChanger {
         info.getClickedMenu().close(player);
     }
 
-    private ItemStack addDescription(ItemStack item, String description){
+    private void addDescription(ItemStack item, String description){
 
         ItemMeta meta = item.getItemMeta();
 
-        List<String> lore = new ArrayList<>();
-        for(String line : description.split("@n")){
-            lore.add(line);
-        }
+        List<String> lore = new ArrayList<>(Arrays.asList(description.split("@n")));
 
         meta.setLore(lore);
-
         item.setItemMeta(meta);
-
-        return item;
 
     }
 
@@ -127,26 +118,17 @@ public class SkinChanger {
 
     }
 
-    private void addSuffix(ItemStack item, String suffix){
+    private void addBrackets(ItemStack item, String left, String right){
 
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(meta.getDisplayName() + suffix);
+        meta.setDisplayName(left + meta.getDisplayName() + right);
 
         item.setItemMeta(meta);
 
     }
 
-    private void addPrefix(ItemStack item, String prefix) {
-
-        ItemMeta meta = item.getItemMeta();
-
-        meta.setDisplayName(prefix + meta.getDisplayName());
-
-        item.setItemMeta(meta);
-    }
-
-    private ItemStack getNamedItem(Material material, String name){
+    private ItemStack createNamedItem(Material material, String name){
 
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
