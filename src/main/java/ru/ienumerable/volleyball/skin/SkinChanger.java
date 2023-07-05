@@ -63,7 +63,7 @@ public class SkinChanger {
 
         int slot = 1;
 
-        for(String id : container.getALlSkinId()){
+        for(String id : container.getAllSkinsId()){
             SkullSkin skin = container.getSkull(id);
             ItemStack item = skin.getItem();
 

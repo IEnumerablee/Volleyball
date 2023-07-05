@@ -22,6 +22,7 @@ public class SkinsRegistry {
         YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(new File(Volleyball.getInstance().getDataFolder(), "skins.yml"));
         Set<String> idSet = yamlConfiguration.getKeys(false);
         for(String id: idSet) {
+
             try {
                 MemorySection skinSection = (MemorySection) yamlConfiguration.get(id);
 
@@ -38,7 +39,7 @@ public class SkinsRegistry {
 
     }
 
-    public Set<String> getALlSkinId(){
+    public Set<String> getAllSkinsId(){
         return nameUrlPair.keySet();
     }
 
