@@ -59,7 +59,7 @@ public class SkinChanger {
                 .previousButtonSlot(18);
 
 
-        SkullsContainer container = Volleyball.getSkullsContainer();
+        SkinsRegistry container = Volleyball.getSkullsContainer();
 
         int slot = 1;
 

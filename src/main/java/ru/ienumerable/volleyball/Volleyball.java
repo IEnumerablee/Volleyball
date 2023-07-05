@@ -5,7 +5,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.ipvp.canvas.MenuFunctionListener;
 import ru.ienumerable.volleyball.ball.BallsContainer;
-import ru.ienumerable.volleyball.skin.SkullsContainer;
+import ru.ienumerable.volleyball.skin.SkinsRegistry;
 import ru.ienumerable.volleyball.tools.update.Updater;
 
 public final class Volleyball extends JavaPlugin {
@@ -15,9 +15,9 @@ public final class Volleyball extends JavaPlugin {
     private static NamespacedKey ballKey;
     private static NamespacedKey ballRandomKey;
 
-    private static final SkullsContainer skullsContainer = new SkullsContainer();;
+    private static final SkinsRegistry SKIN_REGISTRY = new SkinsRegistry();
 
-    private static final TCContainer tcContainer = new TCContainer();
+    private static final TCManager TC_MANAGER = new TCManager();
 
     private static final BallsContainer ballsContainer = new BallsContainer();
 
@@ -55,7 +55,7 @@ public final class Volleyball extends JavaPlugin {
 
     public static void loadConfig(){
 
-        skullsContainer.parseSkulls();
+        SKIN_REGISTRY.parseSkulls();
         Config.init();
 
     }
@@ -71,16 +71,16 @@ public final class Volleyball extends JavaPlugin {
         return ballRandomKey;
     }
 
-    public static TCContainer getTcContainer() {
-        return tcContainer;
+    public static TCManager getTcContainer() {
+        return TC_MANAGER;
     }
 
     public static BallsContainer getBallsContainer(){
         return ballsContainer;
     }
 
-    public static SkullsContainer getSkullsContainer(){
-        return skullsContainer;
+    public static SkinsRegistry getSkullsContainer(){
+        return SKIN_REGISTRY;
     }
 
     public static Updater getUpdater() {

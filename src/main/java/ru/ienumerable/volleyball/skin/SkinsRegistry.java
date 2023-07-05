@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class SkullsContainer {
+public class SkinsRegistry {
 
     private final Map<String, SkullSkin> nameUrlPair = new HashMap<>();
 
