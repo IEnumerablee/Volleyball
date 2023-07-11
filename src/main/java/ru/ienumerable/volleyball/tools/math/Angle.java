@@ -1,7 +1,6 @@
 package ru.ienumerable.volleyball.tools.math;
 
 import org.bukkit.Location;
-import ru.ienumerable.volleyball.Config;
 
 public class Angle {
 
