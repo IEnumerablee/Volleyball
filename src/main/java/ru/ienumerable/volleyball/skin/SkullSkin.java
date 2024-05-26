@@ -3,6 +3,7 @@ package ru.ienumerable.volleyball.skin;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.apache.commons.codec.binary.Base64;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -10,9 +11,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.profile.PlayerProfile;
+import org.bukkit.profile.PlayerTextures;
 import ru.ienumerable.volleyball.Volleyball;
 
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.UUID;
 
 public class SkullSkin {
@@ -79,31 +84,19 @@ public class SkullSkin {
         return dataContainer.has(Volleyball.getBallKey(), PersistentDataType.STRING);
     }
 
-    private static ItemStack getSkullByUrl(String url){
+    private static ItemStack getSkullByUrl(String url) {
         ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1);
 
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+        PlayerProfile profile = Bukkit.createPlayerProfile(UUID.randomUUID());
+        PlayerTextures textures = profile.getTextures();
 
-        byte[] encodedData = Base64.encodeBase64(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
+        try {textures.setSkin(new URL(url));}
+        catch (MalformedURLException e) {e.printStackTrace();}
 
-        profile.getProperties().put("textures", new Property("textures", new String(encodedData)));
-        Field profileField = null;
-
-        try {
-            profileField = skullMeta.getClass().getDeclaredField("profile");
-        } catch (NoSuchFieldException | SecurityException e) {
-            e.printStackTrace();
-        }
-
-        assert profileField != null;
-        profileField.setAccessible(true);
-
-        try {
-            profileField.set(skullMeta, profile);
-        } catch (IllegalArgumentException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        profile.setTextures(textures);
+        assert skullMeta != null;
+        skullMeta.setOwnerProfile(profile);
 
         skull.setItemMeta(skullMeta);
         return skull;
