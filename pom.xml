@@ -6,7 +6,7 @@
 
     <groupId>ru.ienumerable</groupId>
     <artifactId>Volleyball</artifactId>
-    <version>1.4</version>
+    <version>1.4(1.20.4)</version>
     <packaging>jar</packaging>
 
     <name>Volleyball</name>
@@ -56,10 +56,6 @@
         <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
         <repository>
             <id>minecraft-repo</id>
