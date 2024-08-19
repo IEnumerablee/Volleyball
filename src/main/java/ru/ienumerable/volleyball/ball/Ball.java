@@ -278,7 +278,7 @@ public class Ball implements Updatable {
     private LivingEntity spawnTarget() {
         ArmorStand stand = (ArmorStand) position.getWorld().spawnEntity(position, EntityType.ARMOR_STAND);
 
-        stand.getEquipment().setHelmet(new ItemStack(Material.VOID_AIR));
+        stand.getEquipment().setHelmet(new ItemStack(Material.AIR));
 
         stand.setGravity(false);
         stand.setBasePlate(false);
