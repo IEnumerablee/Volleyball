@@ -6,7 +6,7 @@
 
     <groupId>ru.ienumerable</groupId>
     <artifactId>Volleyball</artifactId>
-    <version>1.4(1.20.4)</version>
+    <version>1.4+1.20-1.21</version>
     <packaging>jar</packaging>
 
     <name>Volleyball</name>
