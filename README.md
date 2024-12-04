@@ -83,5 +83,7 @@ mvn clean install
 
 После соберите сам проект
 ```shell
+git clone https://github.com/IEnumerablee/Volleyball.git
+cd Volleyball/
 mvn clean package
 ```
